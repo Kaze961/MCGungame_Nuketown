@@ -1,0 +1,205 @@
+
+#Modded Gungame by datmarcel
+
+#execute command "/gamerule keepInventory true for keepInventory"
+#"/gamerule sendCommandFeedback false"
+#Map: Nuketown	
+command /gungame_join :
+    trigger:
+    	#starter kit
+    	#armor
+        set {armor} to "attacker"
+        #lvl1
+        set {gun_lvl1} to "glock17"
+        set {ammo_lvl1} to "ammo9mm"
+        #teleport spawn
+        set {spawnpoints::*} to "1627.514 20 -787.659", "1628.459 20 -835.338", "1563.462 20 -831.169", "1552.026 20 -823.390", "1547.459 20 -811.458", "1658.637 20 -815.613", "1679.312 20 -829.342", "1693.741 20 -808.696", "1694.674 20 -799.564" and "1598.457 20 -804.407"
+        set {_spawnpoint} to random element out of {spawnpoints::*}
+        execute console command "/tp %player% %{_spawnpoint}%"
+        #timer
+        send title "&c3" to player for 1 seconds
+        wait 1 second
+        send title "&62" to player for 1 seconds
+        wait 1 second
+        send title "&a1" to player for 1 seconds
+        wait 1 second
+        #get kit 1
+        make console execute command "/give @a pointblank:%{gun_lvl1}%" and "/give @a pointblank:%{ammo_lvl1}% 120"
+        execute console command "/item replace entity @a armor.head with lrarmor:%{armor}%_helmet"
+        execute console command "/item replace entity @a armor.chest with lrarmor:%{armor}%_chestplate"
+        execute console command "/item replace entity @a armor.legs with lrarmor:%{armor}%_leggings"
+        execute console command "/item replace entity @a armor.feet with lrarmor:%{armor}%_boots"
+
+command /gungame_stop :
+	permission: op
+	trigger:
+		set {level_%player%} to 0
+		execute console command "/clear @a"
+		execute console command "/tp @a 1627.411 20 -736.308"	
+on join: 
+        send title "&6Welcome back, %player%" with subtitle "&dModded Gungame V2.3" to player for 3 seconds
+on death of player:
+    attacker is a player
+    add 1 to {level_%attacker%}
+    broadcast "&a%attacker% &6killed &c%victim%"
+    #Kits
+    
+    #lvl2
+    set {gun_lvl2} to "mk23"
+    set {ammo_lvl2} to "ammo45acp"
+    #lvl3
+    set {gun_lvl3} to "rhino"
+    set {ammo_lvl3} to "ammo357"
+    #lvl4
+    set {gun_lvl4} to "mp7"
+    set {ammo_lvl4} to "ammo46"
+    #lvl5
+    set {gun_lvl5} to "g36k"
+    set {ammo_lvl5} to "ammo556"
+    #lvl6
+    set {gun_lvl6} to "m870"
+    set {ammo_lvl6} to "ammo12gauge"
+    #lvl7
+    set {gun_lvl7} to "sl8"
+    set {ammo_lvl7} to "ammo556"
+    #lvl8
+    set {gun_lvl8} to "ak47"
+    set {ammo_lvl8} to "ammo762"
+    #lv9
+    set {gun_lvl9} to "m4a1mod1"
+    set {ammo_lvl9} to "ammo556"
+    #lvl10
+    set {gun_lvl10} to "p90"
+    set {ammo_lvl10} to "ammo57"
+    #lvl11
+    set {gun_lvl11} to "m590"
+    set {ammo_lvl11} to "ammo12gauge"
+    #lvl12
+    set {gun_lvl12} to "l96a1"
+    set {ammo_lvl12} to "ammo338lapua"
+    #lvl13
+    set {gun_lvl13} to "m249"
+    set {ammo_lvl13} to "ammo556"
+    #lvl14
+    set {gun_lvl14} to "hk416"
+    set {ammo_lvl14} to "ammo556"
+    #lvl15
+    set {gun_lvl15} to "gm6lynx"
+    set {ammo_lvl15} to "ammo50bmg"
+    #lvl16
+    set {gun_lvl16} to "glock18"
+    set {ammo_lvl16} to "ammo9mm"
+    #lvl17
+    set {gun_lvl17} to "deserteagle"
+    set {ammo_lvl17} to "ammo50ae"
+    #lvl18
+    set {gun_lvl18} to "citoricxs"
+    set {ammo_lvl18} to "ammo12gauge"
+    #lvl19
+    set {gun_lvl19} to "scarl"
+    set {ammo_lvl19} to "ammo556"
+    #lvl20
+    set {knife_lvl20} to "minecraft:netherite_sword"
+    
+    if {level_%attacker%} = 1:
+        execute console command "/clear %attacker% pointblank:%{gun_lvl1}%"
+        execute console command "/clear %attacker% pointblank:%{ammo_lvl1}% 128"
+        execute console command "/give %attacker% pointblank:%{gun_lvl2}%"
+        execute console command "/give %attacker% pointblank:%{ammo_lvl2}% 120"
+    if {level_%attacker%} = 2:
+        execute console command "/clear %attacker% pointblank:%{gun_lvl2}%"
+        execute console command "/clear %attacker% pointblank:%{ammo_lvl2}% 128"
+        execute console command "/give %attacker% pointblank:%{gun_lvl3}%"
+        execute console command "/give %attacker% pointblank:%{ammo_lvl3}% 120"
+    if {level_%attacker%} = 3:
+        execute console command "/clear %attacker% pointblank:%{gun_lvl3}%"
+        execute console command "/clear %attacker% pointblank:%{ammo_lvl3}% 128"
+        execute console command "/give %attacker% pointblank:%{gun_lvl4}%"
+        execute console command "/give %attacker% pointblank:%{ammo_lvl4}% 128"    
+    if {level_%attacker%} = 4:
+        execute console command "/clear %attacker% pointblank:%{gun_lvl4}%"
+        execute console command "/clear %attacker% pointblank:%{ammo_lvl4}% 128"
+        execute console command "/give %attacker% pointblank:%{gun_lvl5}%"
+        execute console command "/give %attacker% pointblank:%{ammo_lvl5}% 128"     
+    if {level_%attacker%} = 5:
+        execute console command "/clear %attacker% pointblank:%{gun_lvl5}%"
+        execute console command "/clear %attacker% pointblank:%{ammo_lvl5}% 128"
+        execute console command "/give %attacker% pointblank:%{gun_lvl6}%"
+        execute console command "/give %attacker% pointblank:%{ammo_lvl6}% 128" 
+    if {level_%attacker%} = 6:
+        execute console command "/clear %attacker% pointblank:%{gun_lvl6}%"
+        execute console command "/clear %attacker% pointblank:%{ammo_lvl6}% 128"
+        execute console command "/give %attacker% pointblank:%{gun_lvl7}%"
+        execute console command "/give %attacker% pointblank:%{ammo_lvl7}% 128"    
+    if {level_%attacker%} = 7:
+        execute console command "/clear %attacker% pointblank:%{gun_lvl7}%"
+        execute console command "/clear %attacker% pointblank:%{ammo_lvl7}% 128"
+        execute console command "/give %attacker% pointblank:%{gun_lvl8}%"
+        execute console command "/give %attacker% pointblank:%{ammo_lvl8}% 128"    
+    if {level_%attacker%} = 8:
+        execute console command "/clear %attacker% pointblank:%{gun_lvl8}%"
+        execute console command "/clear %attacker% pointblank:%{ammo_lvl8}% 128"
+        execute console command "/give %attacker% pointblank:%{gun_lvl9}%"
+        execute console command "/give %attacker% pointblank:%{ammo_lvl9}% 128" 
+    if {level_%attacker%} = 9:
+        execute console command "/clear %attacker% pointblank:%{gun_lvl9}%"
+        execute console command "/clear %attacker% pointblank:%{ammo_lvl9}% 128"
+        execute console command "/give %attacker% pointblank:%{gun_lvl10}%"
+        execute console command "/give %attacker% pointblank:%{ammo_lvl10}% 128"  
+    if {level_%attacker%} = 10:
+        execute console command "/clear %attacker% pointblank:%{gun_lvl10}%"
+        execute console command "/clear %attacker% pointblank:%{ammo_lvl10}% 128"
+        execute console command "/give %attacker% pointblank:%{gun_lvl11}%"
+        execute console command "/give %attacker% pointblank:%{ammo_lvl11}% 128" 
+    if {level_%attacker%} = 11:
+        execute console command "/clear %attacker% pointblank:%{gun_lvl11}%"
+        execute console command "/clear %attacker% pointblank:%{ammo_lvl11}% 128"
+        execute console command "/give %attacker% pointblank:%{gun_lvl12}%"
+        execute console command "/give %attacker% pointblank:%{ammo_lvl12}% 128" 
+    if {level_%attacker%} = 12:
+        execute console command "/clear %attacker% pointblank:%{gun_lvl12}%"
+        execute console command "/clear %attacker% pointblank:%{ammo_lvl12}% 128"
+        execute console command "/give %attacker% pointblank:%{gun_lvl13}%"
+        execute console command "/give %attacker% pointblank:%{ammo_lvl13}% 128" 
+    if {level_%attacker%} = 13:
+        execute console command "/clear %attacker% pointblank:%{gun_lvl13}%"
+        execute console command "/clear %attacker% pointblank:%{ammo_lvl13}% 128"
+        execute console command "/give %attacker% pointblank:%{gun_lvl14}%"
+        execute console command "/give %attacker% pointblank:%{ammo_lvl14}% 128"  
+    if {level_%attacker%} = 14:
+        execute console command "/clear %attacker% pointblank:%{gun_lvl14}%"
+        execute console command "/clear %attacker% pointblank:%{ammo_lvl14}% 128"
+        execute console command "/give %attacker% pointblank:%{gun_lvl15}%"
+        execute console command "/give %attacker% pointblank:%{ammo_lvl15}% 128"  
+    if {level_%attacker%} = 15:
+        execute console command "/clear %attacker% pointblank:%{gun_lvl15}%"
+        execute console command "/clear %attacker% pointblank:%{ammo_lvl15}% 128"
+        execute console command "/give %attacker% pointblank:%{gun_lvl16}%"
+        execute console command "/give %attacker% pointblank:%{ammo_lvl16}% 128" 
+    if {level_%attacker%} = 16:
+        execute console command "/clear %attacker% pointblank:%{gun_lvl16}%"
+        execute console command "/clear %attacker% pointblank:%{ammo_lvl16}% 128"
+        execute console command "/give %attacker% pointblank:%{gun_lvl17}%"
+        execute console command "/give %attacker% pointblank:%{ammo_lvl17}% 128" 
+    if {level_%attacker%} = 17:
+        execute console command "/clear %attacker% pointblank:%{gun_lvl17}%"
+        execute console command "/clear %attacker% pointblank:%{ammo_lvl17}% 128"
+        execute console command "/give %attacker% pointblank:%{gun_lvl18}%"
+        execute console command "/give %attacker% pointblank:%{ammo_lvl18}% 128" 
+    if {level_%attacker%} = 18:
+        execute console command "/clear %attacker% pointblank:%{gun_lvl18}%"
+        execute console command "/clear %attacker% pointblank:%{ammo_lvl18}% 128"
+        execute console command "/give %attacker% pointblank:%{gun_lvl19}%"
+        execute console command "/give %attacker% pointblank:%{ammo_lvl19}% 128" 
+    if {level_%attacker%} = 19:
+        execute console command "/clear %attacker% pointblank:%{gun_lvl19}%"
+        execute console command "/clear %attacker% pointblank:%{ammo_lvl19}% 128"
+        execute console command "/give %attacker% %{knife_lvl20}%"
+    if {level_%attacker%} = 20:
+        set {level_%attacker%} to 0
+        execute console command "/clear @a"
+        execute console command "/tp @a 1627.411 20 -736.308"
+        set {_winner} to "%attacker%"
+        send title "You won, &2%{_winner}%" to attacker for 3 seconds
+        broadcast "The winner is &2%{_winner}%"
+       
