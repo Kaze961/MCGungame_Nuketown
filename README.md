@@ -24,6 +24,7 @@ tacmove-1.4.1
 Plugins:
 (skRayFall)
 Skript
+
 plugins/Skript/scripts/Gungame V2.3.sk
 
 Minecraft Settings:
@@ -31,5 +32,7 @@ Map "Inventory" and "Drop Items" to other keys
 and configure lean left to "Q" and lean right to "E"
 
 If KeepInventory doesnt work or server messages are appearing use:
+
 /gamerule keepInventory true for keepInventory
+
 /gamerule sendCommandFeedback false
