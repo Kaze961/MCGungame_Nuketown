@@ -1,5 +1,5 @@
 # MCGungame_Nuketown
-## Modded minecraft gungame server on the map Nuketown
+## Modded minecraft gungame server on the Nuketown Map
 
 Using pointblank and other mods.
 
